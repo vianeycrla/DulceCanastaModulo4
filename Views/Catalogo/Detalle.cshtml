@@ -1,0 +1,25 @@
+@model Producto
+@{
+    ViewData["Title"] = "Detalle";
+}
+
+<div class="detail-wrap">
+    <div class="detail-image">
+        <img src="@(string.IsNullOrEmpty(Model.ImagenUrl) ? "/images/producto-default.jpg" : Model.ImagenUrl)" alt="@Model.Nombre" />
+    </div>
+    <div class="detail-info">
+        <span class="badge-soft">@Model.Categoria?.Nombre</span>
+        <h1>@Model.Nombre</h1>
+        <p>@Model.Descripcion</p>
+        <p class="price-lg">$@Model.Precio.ToString("N2")</p>
+        <p>Tipo de venta: @Model.TipoVenta</p>
+        <p>Existencias: @Model.Stock</p>
+
+        <form asp-controller="Carrito" asp-action="Agregar" method="post" class="form-inline">
+            <input type="hidden" name="productoId" value="@Model.ProductoId" />
+            <label>Cantidad</label>
+            <input type="number" name="cantidad" value="1" min="1" max="10" class="input-sm" />
+            <button type="submit" class="btn-primary">Agregar a la canasta</button>
+        </form>
+    </div>
+</div>

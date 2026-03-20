@@ -1,0 +1,139 @@
+@{
+    ViewData["Title"] = "Inicio";
+}
+
+<section class="home-hero-v2">
+    <div class="hero-left">
+        <span class="hero-pill">Fruta fresca, bonita y de confianza</span>
+
+        <h1>La canasta perfecta para tu casa empieza aquí.</h1>
+
+        <p class="hero-description">
+            En <strong>Dulce Canasta</strong> seleccionamos fruta fresca, de buen color y gran sabor,
+            para que compres fácil, rápido y con la tranquilidad de recibir productos de calidad.
+        </p>
+
+        <div class="hero-buttons">
+            <a class="btn-main" asp-controller="Catalogo" asp-action="Index">Ver Canastas</a>
+            <a class="btn-secondary-soft" asp-controller="Catalogo" asp-action="Index">Ver frutas</a>
+        </div>
+
+        <div class="hero-rating">
+            <span>5.0 ⭐</span>
+            <span>(120 reseñas)</span>
+        </div>
+    </div>
+
+    <div class="hero-right">
+        <div class="hero-image-frame">
+            <img src="/images/hero-canasta.jpg" alt="Canasta de frutas frescas" />
+            <div class="hero-badge hero-badge-top">Calidad seleccionada</div>
+            <div class="hero-badge hero-badge-bottom">Fruta fresca todos los días</div>
+        </div>
+    </div>
+</section>
+
+<section class="benefits-grid">
+    <article class="benefit-card">
+        <div class="benefit-icon">☀️</div>
+        <h3>Frescura que se nota</h3>
+        <p>
+            Elegimos fruta con mejor aspecto, color y sabor para que cada compra se sienta rica y confiable.
+        </p>
+    </article>
+
+    <article class="benefit-card">
+        <div class="benefit-icon">🪙</div>
+        <h3>Precios que sí convienen</h3>
+        <p>
+            Queremos que llevar fruta a casa sea fácil, accesible y una compra que de verdad valga la pena.
+        </p>
+    </article>
+
+    <article class="benefit-card">
+        <div class="benefit-icon">🎁</div>
+        <h3>Ganastas que ganan</h3>
+        <p>
+            Acumula recompensas en cada pedido y úsalas en tu próxima compra desde la web.
+        </p>
+    </article>
+</section>
+
+<section class="season-section">
+    <h2>Favoritos de Temporada</h2>
+
+    <div class="season-grid">
+        <article class="season-card">
+            <img src="/images/mango-ataulfo.jpg" alt="Mangos de temporada" />
+            <div class="season-info">
+                <div>
+                    <h4>Mangos de temporada</h4>
+                    <p>$79.00 MXN</p>
+                </div>
+                <a class="mini-add" asp-controller="Catalogo" asp-action="Index">+</a>
+            </div>
+        </article>
+
+        <article class="season-card">
+            <img src="/images/fresa.jpg" alt="Fresas del día" />
+            <div class="season-info">
+                <div>
+                    <h4>Fresas del día</h4>
+                    <p>$65.00 MXN</p>
+                </div>
+                <a class="mini-add" asp-controller="Catalogo" asp-action="Index">+</a>
+            </div>
+        </article>
+
+        <article class="season-card">
+            <img src="/images/durazno.jpg" alt="Fruta de temporada" />
+            <div class="season-info">
+                <div>
+                    <h4>Duraznos frescos</h4>
+                    <p>$55.00 MXN</p>
+                </div>
+                <a class="mini-add" asp-controller="Catalogo" asp-action="Index">+</a>
+            </div>
+        </article>
+
+        <article class="season-card">
+            <img src="/images/uva-roja.jpg" alt="Uvas frescas" />
+            <div class="season-info">
+                <div>
+                    <h4>Uva roja premium</h4>
+                    <p>$70.00 MXN</p>
+                </div>
+                <a class="mini-add" asp-controller="Catalogo" asp-action="Index">+</a>
+            </div>
+        </article>
+    </div>
+</section>
+
+<section class="cta-band">
+    <div class="cta-band-text">
+        <span class="cta-mini">Dulce Canasta</span>
+        <h2>Llena tu cocina de color, frescura y sabor.</h2>
+        <p>
+            Descubre nuestro catálogo y arma una compra sencilla con frutas deliciosas para todos los días.
+        </p>
+    </div>
+
+    <a class="cta-band-btn" asp-controller="Catalogo" asp-action="Index">Ir al catálogo</a>
+</section>
+
+<section class="testimonial-box">
+    <button class="testimonial-arrow">‹</button>
+
+    <div class="testimonial-content">
+        <img src="/images/cliente-demo.jpg" alt="Cliente satisfecha" />
+        <div>
+            <p>
+                “Me encantó la presentación de la fruta y llegó fresca. Se siente una compra muy cuidada.”
+            </p>
+            <strong>Yankel 5.0 ⭐</strong>
+            <span>(120 reseñas)</span>
+        </div>
+    </div>
+
+    <button class="testimonial-arrow">›</button>
+</section>

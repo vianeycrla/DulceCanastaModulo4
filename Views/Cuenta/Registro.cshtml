@@ -1,0 +1,71 @@
+﻿@model DulceCanastaModulo4.Models.Usuario
+@{
+    ViewData["Title"] = "Crear cuenta";
+}
+
+<section class="auth-page">
+    <div class="auth-side">
+        <span class="auth-pill">Tu cuenta en Dulce Canasta</span>
+        <h1>Crea tu perfil y compra más fácil.</h1>
+        <p>
+            Guarda tus datos personales y tu dirección para que pedir fruta fresca sea mucho más rápido.
+        </p>
+
+        <div class="auth-side-image">
+            <img src="/images/registro-frutas.jpg" alt="Registro Dulce Canasta" />
+        </div>
+    </div>
+
+    <div class="auth-card">
+        <h2>Crear cuenta</h2>
+        <p class="auth-subtext">Completa tus datos para registrarte.</p>
+
+        <form asp-action="Registro" method="post" class="auth-form">
+            <div class="profile-form-grid">
+                <div>
+                    <label asp-for="Nombre"></label>
+                    <input asp-for="Nombre" class="auth-input" />
+                    <span asp-validation-for="Nombre" class="text-danger"></span>
+                </div>
+
+                <div>
+                    <label asp-for="ApellidoPaterno"></label>
+                    <input asp-for="ApellidoPaterno" class="auth-input" />
+                    <span asp-validation-for="ApellidoPaterno" class="text-danger"></span>
+                </div>
+
+                <div>
+                    <label asp-for="ApellidoMaterno"></label>
+                    <input asp-for="ApellidoMaterno" class="auth-input" />
+                    <span asp-validation-for="ApellidoMaterno" class="text-danger"></span>
+                </div>
+
+                <div>
+                    <label asp-for="FechaNacimiento"></label>
+                    <input asp-for="FechaNacimiento" class="auth-input" type="date" />
+                    <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+                </div>
+
+                <div class="full">
+                    <label asp-for="Email"></label>
+                    <input asp-for="Email" class="auth-input" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+
+                <div>
+                    <label asp-for="Telefono"></label>
+                    <input asp-for="Telefono" class="auth-input" />
+                    <span asp-validation-for="Telefono" class="text-danger"></span>
+                </div>
+
+                <div>
+                    <label asp-for="PasswordHash"></label>
+                    <input asp-for="PasswordHash" class="auth-input" type="password" />
+                    <span asp-validation-for="PasswordHash" class="text-danger"></span>
+                </div>
+            </div>
+
+            <button type="submit" class="auth-btn">Crear cuenta</button>
+        </form>
+    </div>
+</section>

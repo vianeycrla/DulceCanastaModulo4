@@ -1,0 +1,47 @@
+@model DulceCanastaModulo4.Models.Pedido
+@{
+    ViewData["Title"] = "Pedido confirmado";
+}
+
+<section class="confirmation-page">
+    <div class="confirmation-card">
+        <h1>Pedido confirmado</h1>
+
+        <div class="confirmation-data">
+            <p><strong>Folio:</strong> @Model.PedidoId</p>
+            <p><strong>Cliente:</strong> @Model.NombreCliente @Model.ApellidoPaternoCliente @Model.ApellidoMaternoCliente</p>
+            <p><strong>Teléfono:</strong> @Model.Telefono</p>
+            <p><strong>Fecha de nacimiento:</strong> @(Model.FechaNacimientoCliente?.ToString("dd/MM/yyyy") ?? "No capturada")</p>
+            <p><strong>Tipo de entrega:</strong> @(Model.TipoEntrega == "Domicilio" ? "Entrega a domicilio" : "Recoger en tienda")</p>
+
+            @if (Model.TipoEntrega == "Domicilio")
+            {
+                <p><strong>Dirección:</strong> @Model.DireccionEntrega</p>
+            }
+
+            <p><strong>Estatus:</strong> @Model.Estatus</p>
+            <p><strong>Total:</strong> @Model.Total.ToString("C")</p>
+
+            @if (!string.IsNullOrWhiteSpace(Model.Notas))
+            {
+                <p><strong>Notas:</strong> @Model.Notas</p>
+            }
+        </div>
+
+        <h3>Productos</h3>
+
+        @if (Model.Detalles != null && Model.Detalles.Any())
+        {
+            <ul>
+                @foreach (var item in Model.Detalles)
+                {
+                    <li>@(item.Producto?.Nombre ?? "Producto") - @item.Cantidad x @item.PrecioUnitario.ToString("C")</li>
+                }
+            </ul>
+        }
+        else
+        {
+            <p>No hay productos asociados a este pedido.</p>
+        }
+    </div>
+</section>

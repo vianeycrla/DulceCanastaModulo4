@@ -1,0 +1,31 @@
+@model Pedido
+@{
+    ViewData["Title"] = "Detalle del pedido";
+}
+
+<div class="card-panel">
+    <h1>Pedido #@Model.PedidoId</h1>
+    <p><strong>Cliente:</strong> @Model.NombreCliente</p>
+    <p><strong>Teléfono:</strong> @Model.Telefono</p>
+    <p><strong>Dirección:</strong> @Model.DireccionEntrega</p>
+    <p><strong>Notas:</strong> @Model.Notas</p>
+    <p><strong>Total:</strong> $@Model.Total.ToString("N2")</p>
+
+    <form asp-action="CambiarEstatus" method="post" class="form-inline">
+        <input type="hidden" name="pedidoId" value="@Model.PedidoId" />
+        <select name="estatus" class="input-sm">
+            <option value="Pendiente">Pendiente</option>
+            <option value="Preparando">Preparando</option>
+            <option value="Entregado">Entregado</option>
+        </select>
+        <button type="submit" class="btn-primary">Actualizar estatus</button>
+    </form>
+
+    <h3>Detalle</h3>
+    <ul class="order-list">
+        @foreach (var item in Model.Detalles)
+        {
+            <li>@item.Producto?.Nombre · @item.Cantidad · $@item.Subtotal.ToString("N2")</li>
+        }
+    </ul>
+</div>

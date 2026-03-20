@@ -1,0 +1,45 @@
+@model Producto
+
+<form method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <label asp-for="Nombre"></label>
+    <input asp-for="Nombre" class="input" />
+    <span asp-validation-for="Nombre" class="text-danger"></span>
+
+    <label asp-for="Descripcion"></label>
+    <textarea asp-for="Descripcion" class="input"></textarea>
+
+    <label asp-for="Precio"></label>
+    <input asp-for="Precio" class="input" />
+    <span asp-validation-for="Precio" class="text-danger"></span>
+
+    <label asp-for="Stock"></label>
+    <input asp-for="Stock" class="input" />
+
+    <label asp-for="TipoVenta"></label>
+    <select asp-for="TipoVenta" class="input">
+        <option value="Pieza">Pieza</option>
+        <option value="Kilo">Kilo</option>
+        <option value="Caja">Caja</option>
+    </select>
+
+    <label asp-for="ImagenUrl"></label>
+    <input asp-for="ImagenUrl" class="input" placeholder="/images/fresa.jpg" />
+
+    <label asp-for="CategoriaId"></label>
+    <select asp-for="CategoriaId" asp-items="ViewBag.CategoriaId" class="input"></select>
+
+    <label class="check-wrap">
+        <input asp-for="Activo" /> Activo
+    </label>
+
+    @if (Model.ProductoId > 0)
+    {
+        <input type="hidden" asp-for="ProductoId" />
+        <input type="hidden" asp-for="FechaRegistro" />
+    }
+
+    <button type="submit" class="btn-primary">Guardar</button>
+    <a asp-action="Index" class="btn-secondary">Volver</a>
+</form>

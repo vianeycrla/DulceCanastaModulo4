@@ -1,0 +1,33 @@
+@model IEnumerable<Pedido>
+@{
+    ViewData["Title"] = "Pedidos";
+}
+
+<h1>Pedidos recibidos</h1>
+<div class="cart-table">
+    <table>
+        <thead>
+            <tr>
+                <th>Folio</th>
+                <th>Cliente</th>
+                <th>Fecha</th>
+                <th>Estatus</th>
+                <th>Total</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.PedidoId</td>
+                    <td>@item.NombreCliente</td>
+                    <td>@item.FechaPedido.ToString("dd/MM/yyyy HH:mm")</td>
+                    <td>@item.Estatus</td>
+                    <td>$@item.Total.ToString("N2")</td>
+                    <td><a asp-action="Details" asp-route-id="@item.PedidoId">Ver detalle</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

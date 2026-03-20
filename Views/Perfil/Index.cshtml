@@ -1,0 +1,90 @@
+﻿@model DulceCanastaModulo4.Models.Usuario
+@{
+    ViewData["Title"] = "Mi perfil";
+}
+
+<section class="profile-page">
+    <div class="profile-header">
+        <h1>Mi perfil</h1>
+        <p>Administra tus datos personales y de entrega.</p>
+    </div>
+
+    <div class="profile-grid">
+        <aside class="profile-side-card">
+            <img class="profile-avatar" src="@(string.IsNullOrEmpty(Model.FotoUrl) ? "/images/cliente-demo.jpg" : Model.FotoUrl)" alt="Foto de perfil" />
+            <div class="profile-name">@Model.NombreCompleto</div>
+            <div class="profile-role">@Model.Rol</div>
+
+            <div class="profile-data">
+                <div><strong>Correo:</strong><br />@Model.Email</div>
+                <div><strong>Teléfono:</strong><br />@Model.Telefono</div>
+                <div><strong>Ciudad:</strong><br />@Model.Ciudad</div>
+            </div>
+        </aside>
+
+        <div class="profile-main-card">
+            <form asp-action="Guardar" method="post" class="auth-form">
+                <input type="hidden" asp-for="UsuarioId" />
+                <input type="hidden" asp-for="Email" />
+                <input type="hidden" asp-for="PasswordHash" />
+                <input type="hidden" asp-for="Rol" />
+                <input type="hidden" asp-for="Activo" />
+                <input type="hidden" asp-for="FechaRegistro" />
+
+                <div class="profile-form-grid">
+                    <div>
+                        <label asp-for="Nombre"></label>
+                        <input asp-for="Nombre" class="auth-input" />
+                    </div>
+
+                    <div>
+                        <label asp-for="ApellidoPaterno"></label>
+                        <input asp-for="ApellidoPaterno" class="auth-input" />
+                    </div>
+
+                    <div>
+                        <label asp-for="ApellidoMaterno"></label>
+                        <input asp-for="ApellidoMaterno" class="auth-input" />
+                    </div>
+
+                    <div>
+                        <label asp-for="FechaNacimiento"></label>
+                        <input asp-for="FechaNacimiento" class="auth-input" type="date" />
+                    </div>
+
+                    <div>
+                        <label asp-for="Telefono"></label>
+                        <input asp-for="Telefono" class="auth-input" />
+                    </div>
+
+                    <div>
+                        <label asp-for="FotoUrl"></label>
+                        <input asp-for="FotoUrl" class="auth-input" />
+                    </div>
+
+                    <div class="full">
+                        <label asp-for="Direccion"></label>
+                        <input asp-for="Direccion" class="auth-input" />
+                    </div>
+
+                    <div>
+                        <label asp-for="Ciudad"></label>
+                        <input asp-for="Ciudad" class="auth-input" />
+                    </div>
+
+                    <div>
+                        <label asp-for="CodigoPostal"></label>
+                        <input asp-for="CodigoPostal" class="auth-input" />
+                    </div>
+
+                    <div class="full">
+                        <label asp-for="Referencias"></label>
+                        <textarea asp-for="Referencias" class="auth-textarea" rows="4"></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="auth-btn">Guardar cambios</button>
+            </form>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,55 @@
+@model List<DulceCanastaModulo4.ViewModels.SessionCartItemViewModel>
+@{
+    ViewData["Title"] = "Tu canasta";
+    var total = Model.Sum(x => x.Subtotal);
+}
+
+<section class="cart-page">
+    <h1>Tu canasta</h1>
+
+    @if (!Model.Any())
+    {
+        <div class="empty-card">
+            <p>Tu canasta está vacía.</p>
+            <a class="btn-primary" asp-controller="Catalogo" asp-action="Index">Ir al catálogo</a>
+        </div>
+    }
+    else
+    {
+        <div class="cart-table-card">
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                        <th>Subtotal</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Nombre</td>
+                            <td>@item.PrecioUnitario.ToString("C")</td>
+                            <td>@item.Cantidad</td>
+                            <td>@item.Subtotal.ToString("C")</td>
+                            <td>
+                                <form asp-action="Quitar" method="post">
+                                    <input type="hidden" name="productoId" value="@item.ProductoId" />
+                                    <button type="submit" class="btn-danger-soft">Quitar</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="cart-total-card">
+            <p><strong>Total:</strong> @total.ToString("C")</p>
+            <a class="btn-primary" asp-action="Checkout">Confirmar pedido</a>
+        </div>
+    }
+</section>

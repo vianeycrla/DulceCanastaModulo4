@@ -1,0 +1,42 @@
+@model IEnumerable<Producto>
+@{
+    ViewData["Title"] = "Catálogo";
+}
+
+<section class="section-header">
+    <div>
+        <h1>Catálogo de frutas</h1>
+        <p>Elige productos frescos y agrégalos a tu canasta.</p>
+    </div>
+</section>
+
+<div class="chips">
+    <a class="chip" asp-action="Index">Todas</a>
+    @foreach (var categoria in ViewBag.Categorias)
+    {
+        <a class="chip" asp-action="Index" asp-route-categoriaId="@categoria.CategoriaId">@categoria.Nombre</a>
+    }
+</div>
+
+<div class="product-grid">
+    @foreach (var item in Model)
+    {
+        <article class="product-card">
+            <img src="@(string.IsNullOrEmpty(item.ImagenUrl) ? "/images/producto-default.jpg" : item.ImagenUrl)" alt="@item.Nombre" />
+            <div class="product-body">
+                <span class="badge-soft">@item.Categoria?.Nombre</span>
+                <h3>@item.Nombre</h3>
+                <p>@item.Descripcion</p>
+                <p><strong>$@item.Precio.ToString("N2")</strong> · @item.TipoVenta</p>
+                <p>Stock disponible: @item.Stock</p>
+                <div class="card-actions">
+                    <a class="btn-secondary" asp-action="Detalle" asp-route-id="@item.ProductoId">Detalle</a>
+                    <form asp-controller="Carrito" asp-action="Agregar" method="post">
+                        <input type="hidden" name="productoId" value="@item.ProductoId" />
+                        <button type="submit" class="btn-primary">Agregar</button>
+                    </form>
+                </div>
+            </div>
+        </article>
+    }
+</div>

@@ -1,0 +1,43 @@
+@model IEnumerable<Producto>
+@{
+    ViewData["Title"] = "Administrar productos";
+}
+
+<div class="section-header">
+    <div>
+        <h1>Productos</h1>
+        <p>Alta, edición y eliminación de productos.</p>
+    </div>
+    <a class="btn-primary" asp-action="Create">Nuevo producto</a>
+</div>
+
+<div class="cart-table">
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Activo</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Nombre</td>
+                    <td>@item.Categoria?.Nombre</td>
+                    <td>$@item.Precio.ToString("N2")</td>
+                    <td>@item.Stock</td>
+                    <td>@(item.Activo ? "Sí" : "No")</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.ProductoId">Editar</a> |
+                        <a asp-action="Delete" asp-route-id="@item.ProductoId">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

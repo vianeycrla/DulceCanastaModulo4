@@ -1,0 +1,67 @@
+@using Microsoft.AspNetCore.Http
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Dulce Canasta</title>
+    <link rel="stylesheet" href="~/css/cozy.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="main-header">
+        <div class="container nav-wrap">
+            <a class="brand" asp-controller="Home" asp-action="Index">🍓 Dulce Canasta</a>
+
+            <nav>
+                <a asp-controller="Home" asp-action="Index">Inicio</a>
+                <a asp-controller="Catalogo" asp-action="Index">Catálogo</a>
+
+                @if (Context.Session.GetString("Rol") == "Admin")
+                {
+                    <a asp-controller="AdminProductos" asp-action="Index">Productos</a>
+                    <a asp-controller="AdminPedidos" asp-action="Index">Pedidos</a>
+                }
+                else if (!string.IsNullOrEmpty(Context.Session.GetString("UsuarioNombre")))
+                {
+                    <a asp-controller="Carrito" asp-action="Index">Canasta</a>
+                    <a asp-controller="Perfil" asp-action="Index">Mi perfil</a>
+                }
+                else
+                {
+                    <a asp-controller="Carrito" asp-action="Index">Canasta</a>
+                }
+            </nav>
+
+            <div class="nav-user">
+                @if (!string.IsNullOrEmpty(Context.Session.GetString("UsuarioNombre")))
+                {
+                    <span>Hola, @Context.Session.GetString("UsuarioNombre")</span>
+                    <a class="btn-outline" asp-controller="Cuenta" asp-action="Logout">Salir</a>
+                }
+                else
+                {
+                    <a class="btn-outline" asp-controller="Cuenta" asp-action="Login">Entrar</a>
+                }
+            </div>
+        </div>
+    </header>
+
+    <main class="container page-body">
+        @if (TempData["Mensaje"] != null)
+        {
+            <div class="alert-success">@TempData["Mensaje"]</div>
+        }
+
+        @RenderBody()
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>Dulce Canasta · Proyecto MVC módulo 4 · Fruta fresca, compra sencilla.</p>
+        </div>
+    </footer>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

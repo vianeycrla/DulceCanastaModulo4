@@ -1,0 +1,112 @@
+@model DulceCanastaModulo4.ViewModels.CheckoutViewModel
+@{
+    ViewData["Title"] = "Confirmar pedido";
+}
+
+<section class="checkout-page">
+    <div class="checkout-header">
+        <h1>Confirmar pedido</h1>
+        <p>Revisa tus datos y elige cómo quieres recibir tu compra.</p>
+    </div>
+
+    <div class="checkout-grid">
+        <aside class="checkout-summary-card">
+            <h3>Resumen</h3>
+
+            <ul class="checkout-summary-list">
+                @foreach (var item in Model.Items)
+                {
+                    <li>
+                        <span>@item.Nombre x @item.Cantidad</span>
+                        <strong>@item.Subtotal.ToString("C")</strong>
+                    </li>
+                }
+            </ul>
+
+            <div class="checkout-total">
+                <span>Total</span>
+                <strong>@Model.Total.ToString("C")</strong>
+            </div>
+        </aside>
+
+        <div class="checkout-form-card">
+            <form asp-action="Checkout" method="post" class="auth-form">
+                <div class="profile-form-grid">
+                    <div>
+                        <label asp-for="NombreCliente"></label>
+                        <input asp-for="NombreCliente" class="auth-input" />
+                        <span asp-validation-for="NombreCliente" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="ApellidoPaternoCliente"></label>
+                        <input asp-for="ApellidoPaternoCliente" class="auth-input" />
+                        <span asp-validation-for="ApellidoPaternoCliente" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="ApellidoMaternoCliente"></label>
+                        <input asp-for="ApellidoMaternoCliente" class="auth-input" />
+                        <span asp-validation-for="ApellidoMaternoCliente" class="text-danger"></span>
+                    </div>
+
+                    <div>
+                        <label asp-for="FechaNacimientoCliente"></label>
+                        <input asp-for="FechaNacimientoCliente" type="date" class="auth-input" />
+                        <span asp-validation-for="FechaNacimientoCliente" class="text-danger"></span>
+                    </div>
+
+                    <div class="full">
+                        <label asp-for="Telefono"></label>
+                        <input asp-for="Telefono" class="auth-input" />
+                        <span asp-validation-for="Telefono" class="text-danger"></span>
+                    </div>
+
+                    <div class="full">
+                        <label asp-for="TipoEntrega"></label>
+                        <select asp-for="TipoEntrega" class="auth-select" id="tipoEntrega">
+                            <option value="RecogerEnTienda">Recoger en tienda</option>
+                            <option value="Domicilio">Entrega a domicilio</option>
+                        </select>
+                        <span asp-validation-for="TipoEntrega" class="text-danger"></span>
+                    </div>
+
+                    <div class="full" id="direccionWrap">
+                        <label asp-for="DireccionEntrega"></label>
+                        <textarea asp-for="DireccionEntrega" class="auth-textarea" rows="3"></textarea>
+                        <span asp-validation-for="DireccionEntrega" class="text-danger"></span>
+                    </div>
+
+                    <div class="full">
+                        <label asp-for="Notas"></label>
+                        <textarea asp-for="Notas" class="auth-textarea" rows="3" placeholder="Indicaciones adicionales, referencia del domicilio o comentario del pedido"></textarea>
+                        <span asp-validation-for="Notas" class="text-danger"></span>
+                    </div>
+                </div>
+
+                <button type="submit" class="auth-btn">Generar pedido</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        function toggleDireccion() {
+            const tipoEntrega = document.getElementById("tipoEntrega");
+            const direccionWrap = document.getElementById("direccionWrap");
+
+            if (tipoEntrega.value === "Domicilio") {
+                direccionWrap.style.display = "block";
+            } else {
+                direccionWrap.style.display = "none";
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const tipoEntrega = document.getElementById("tipoEntrega");
+            toggleDireccion();
+            tipoEntrega.addEventListener("change", toggleDireccion);
+        });
+    </script>
+}
