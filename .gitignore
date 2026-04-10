@@ -1,2 +1,35 @@
-.vs/
+# Build
 bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+publish/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.rsuser
+
+# VS Code / Rider
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local config / secrets
+appsettings.Development.json
+secrets.json
+
+# Backup / temp files
+*Backup*.csproj
+*.bak
+*.tmp
